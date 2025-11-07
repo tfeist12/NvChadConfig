@@ -18,7 +18,7 @@ local options = {
 
   formatters = {
     golines = {
-      prepend_args = { "-m", "120" },
+      prepend_args = { "-m", "128" },
     },
   },
 
