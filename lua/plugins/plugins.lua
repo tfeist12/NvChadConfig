@@ -57,9 +57,11 @@ return {
   },
 
   -- Mason: Install lsp servers, formatters, and linters
+  -- Registry List: https://mason-registry.dev/registry/list
   {
     "williamboman/mason.nvim",
     opts = {
+      max_concurrent_installers = 15,
       ensure_installed = {
         -- LSP servers
         "lua-language-server",
