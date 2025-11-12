@@ -81,7 +81,6 @@ return {
         "usort",
         "gofumpt",
         "goimports-reviser",
-        "golines",
         "prettier",
         -- Linters
         "shellcheck",

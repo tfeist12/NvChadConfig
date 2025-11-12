@@ -4,7 +4,7 @@ local options = {
     sh = { "shfmt" },
     bash = { "shfmt" },
     python = { "blue", "usort" },
-    go = { "gofumpt", "goimports-reviser", "golines" },
+    go = { "gofumpt", "goimports-reviser" },
     javascript = { "prettier" },
     typescript = { "prettier" },
     javascriptreact = { "prettier" },
@@ -14,12 +14,6 @@ local options = {
     json = { "prettier" },
     yaml = { "prettier" },
     markdown = { "prettier" },
-  },
-
-  formatters = {
-    golines = {
-      prepend_args = { "-m", "128" },
-    },
   },
 
   format_on_save = {

@@ -49,7 +49,7 @@ This configuration includes the following customizations beyond the default NvCh
 ### LSP & Formatting
 
 - **LSP Servers** (via Mason): lua_ls, bashls, pylsp, gopls, html, cssls, denols, jqls, yamlls, helm_ls
-- **Formatters** (via conform.nvim): stylua, shfmt, blue, usort, gofumpt, goimports-reviser, golines, prettier
+- **Formatters** (via conform.nvim): stylua, shfmt, blue, usort, gofumpt, goimports-reviser, prettier
 - **Linters** (via nvim-lint): shellcheck, jsonlint, yamllint
 
 ### Tree-sitter Parsers
