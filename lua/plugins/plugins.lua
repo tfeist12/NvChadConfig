@@ -31,6 +31,14 @@ return {
     end,
   },
 
+  -- NvimTree: File explorer
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = function()
+      return require "configs.nvimtree"
+    end,
+  },
+
   -- Treesitter: Install language parsers
   {
     "nvim-treesitter/nvim-treesitter",
