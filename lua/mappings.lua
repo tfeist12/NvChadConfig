@@ -1,7 +1,5 @@
 require "nvchad.mappings"
 
--- add yours here
-
 local map = vim.keymap.set
 
 -- Convenience
@@ -38,9 +36,12 @@ map("n", "<C-k>", "<cmd>SmartCursorMoveUp<CR>", { desc = "smartcursor move to up
 map("n", "<C-j>", "<cmd>SmartCursorMoveDown<CR>", { desc = "smartcursor move to lower window" })
 
 -- Trouble diagnostics
-map("n", "<leader>t", "<cmd>Trouble diagnostics toggle<cr>", { desc = "trouble diagnostics" })
-map("n", "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "trouble symbols" })
-map("n", "<leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "trouble lsp" })
+map("n", "<leader>t", "<cmd>Trouble diagnostics toggle<CR>", { desc = "trouble diagnostics" })
+map("n", "<leader>ts", "<cmd>Trouble symbols toggle focus=false<CR>", { desc = "trouble symbols" })
+map("n", "<leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", { desc = "trouble lsp" })
+
+-- CopilotChat
+map("n", "<leader>cc", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle copilot chat" })
 
 -- Unmap NvChad terminal mappings that conflict with Harpoon
 vim.keymap.del("n", "<leader>h")
@@ -65,9 +66,9 @@ map("n", "<leader>a", function()
   require("harpoon"):list():add()
 end, { desc = "Harpoon add file" })
 map("n", "<leader>j", function()
-  require("harpoon"):list():next({ ui_nav_wrap = true })
+  require("harpoon"):list():next { ui_nav_wrap = true }
 end, { desc = "Harpoon next file" })
 map("n", "<leader>k", function()
-  require("harpoon"):list():prev({ ui_nav_wrap = true })
+  require("harpoon"):list():prev { ui_nav_wrap = true }
 end, { desc = "Harpoon previous file" })
 map("n", "<leader>d", "<leader>d", { desc = "Harpoon quick menu delete entry" })

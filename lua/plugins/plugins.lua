@@ -180,7 +180,7 @@ return {
   -- Copilot Chat
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    cmd = "CopilotChat",
+    cmd = { "CopilotChatToggle" },
     branch = "main",
     dependencies = {
       { "zbirenbaum/copilot.lua" },
@@ -190,7 +190,43 @@ return {
     opts = {
       -- include the current buffer
       resources = { "buffer" },
+      window = {
+        layout = "float",
+        relative = "editor",
+        width = 0.8,
+        height = 0.8,
+        border = "single",
+      },
     },
+    config = function(_, opts)
+      local chat = require "CopilotChat"
+      chat.setup(opts)
+
+      -- Track Copilot state before opening chat
+      local copilot_was_enabled = false
+
+      -- Prevent buffer switching in CopilotChat window
+      vim.api.nvim_create_autocmd("BufWinEnter", {
+        pattern = "*",
+        callback = function(ev)
+          if vim.bo[ev.buf].filetype == "copilot-chat" then
+            vim.wo.winfixbuf = true
+            -- Track if Copilot was already enabled
+            copilot_was_enabled = vim.g.copilot_enabled or false
+          end
+        end,
+      })
+
+      -- Disable Copilot when chat closes (if it wasn't enabled before)
+      vim.api.nvim_create_autocmd("BufDelete", {
+        pattern = "*",
+        callback = function(ev)
+          if vim.bo[ev.buf].filetype == "copilot-chat" and not copilot_was_enabled then
+            vim.cmd "Copilot disable"
+          end
+        end,
+      })
+    end,
     lazy = true,
   },
 }
