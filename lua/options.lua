@@ -1,44 +1,16 @@
 require "nvchad.options"
 
--- Show relative line numbers
+-- show relative line numbers
 vim.o.relativenumber = true
 
--- Fix single character deletion hanging issue
-local copy_timer = nil
-local copy_text = nil
-
-local function debounced_copy(lines)
-  copy_text = table.concat(lines, "\n")
-  if copy_timer then
-    copy_timer:stop()
-    copy_timer:close()
-    copy_timer = nil
-  end
-  local timer = vim.uv.new_timer()
-  if not timer then
-    return
-  end
-  copy_timer = timer
-  timer:start(
-    150,
-    0,
-    vim.schedule_wrap(function()
-      vim.fn.system({ "tmux", "load-buffer", "-w", "-" }, copy_text)
-      if timer then
-        timer:close()
-      end
-      if copy_timer == timer then
-        copy_timer = nil
-      end
-    end)
-  )
-end
-
+-- Copy via OSC 52 so each yank is an escape sequence, not a blocking tmux client spawn.
+-- set-clipboard on makes tmux capture it into its buffer.
+local osc52 = require "vim.ui.clipboard.osc52"
 vim.g.clipboard = {
-  name = "tmux-debounced",
+  name = "osc52-tmux",
   copy = {
-    ["+"] = debounced_copy,
-    ["*"] = debounced_copy,
+    ["+"] = osc52.copy("+"),
+    ["*"] = osc52.copy("*"),
   },
   paste = {
     ["+"] = { "tmux", "save-buffer", "-" },
