@@ -7,10 +7,7 @@ local servers = {
   "bashls",
   "pylsp",
   "gopls",
-  "html",
-  "cssls",
-  "denols",
-  "jqls",
+  "jsonls",
   "yamlls",
   "helm_ls",
 }

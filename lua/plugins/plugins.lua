@@ -76,10 +76,7 @@ return {
         "bash-language-server",
         "python-lsp-server",
         "gopls",
-        "html-lsp",
-        "css-lsp",
-        "deno",
-        "jq-lsp",
+        "json-lsp",
         "yaml-language-server",
         "helm-ls",
         -- Formatters
