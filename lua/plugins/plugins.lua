@@ -185,6 +185,8 @@ return {
     },
     build = "make tiktoken",
     opts = {
+      -- default model (avoids the unavailable gpt-4.1 default)
+      model = "claude-opus-5",
       -- include the current buffer
       resources = { "buffer" },
       window = {
